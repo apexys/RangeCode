@@ -57,7 +57,9 @@ impl RangeEncoder{
             }
             let real_b = b? as usize;
             base += densities_bases[real_b].clone() * range.clone();
-            range *= densities_ranges[real_b].clone();
+            //base.add_mul_refs(&densities_bases[real_b], &range);
+            //range *= densities_ranges[real_b].clone();
+            range.mul_ref(&densities_ranges[real_b]);
         }
         eprintln!("\r{} bytes processed", ctr);
         range = range * Rational::from(1,2);

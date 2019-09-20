@@ -74,6 +74,21 @@ impl Rational{
             opcount: 0
         }.simplify()
     }
+
+    pub fn mul_ref(&mut self, other: &Self){
+        self.numerator = &self.numerator * &other.numerator;
+        self.denominator = &self.denominator * &other.denominator;
+        self.opcount += other.opcount;
+        self.simplify_mut();
+    }
+
+    pub fn add_mul_refs(&mut self, o1: &Self, o2: &Self){
+        self.denominator = &self.denominator * &o1.denominator * &o2.denominator;
+        self.numerator = (&self.numerator * &o1.denominator * &o2.denominator) 
+                        + (&o1.numerator * &o2.numerator * &self.denominator * &o2.denominator); 
+        self.opcount += o1.opcount + o2.opcount;
+        self.simplify_mut();
+    }
 }
 
 impl std::ops::Add for Rational{
