@@ -1,0 +1,9 @@
+[package]
+name = "RangeCode"
+version = "0.1.0"
+authors = ["Valentin Buck <ivan.v.buck@student.fh-kiel.de>"]
+edition = "2018"
+
+[dependencies]
+num-bigint = "0.2"
+num-traits = "0.2"
